@@ -18,46 +18,37 @@ public class 이중우선순위큐 {
 
 	class Solution {
 		public int[] solution(String[] operations) {
-
-			final String INSERT = "I";
-			final String DELETE = "D";
+			int[] answer = {};
 
 			Queue<Integer> max = new PriorityQueue<>(Collections.reverseOrder());
 			Queue<Integer> min = new PriorityQueue<>();
 
-
 			for (int i = 0; i < operations.length; i++) {
-				String[] command = operations[i].split(" ");
-				String operator = command[0];
-				int num = Integer.parseInt(command[1]);
+				String[] split = operations[i].split(" ");
+				String operator = split[0];
+				int value = Integer.parseInt(split[1]);
 
-				if (operator.equals(INSERT)) {
-					max.offer(num);
-					min.offer(num);
-				} else if (operator.equals(DELETE)) {
-					if (num == 1) {
-						if (!max.isEmpty()) {
-							int maxVal = max.poll();
-							min.remove(maxVal);
-						}
-					} else if (num == -1) {
-						if (!min.isEmpty()) {
-							int minVal = min.poll();
-							max.remove(minVal);
-						}
+				if (operator.equals("I")) {
+					max.offer(value);
+					min.offer(value);
+				} else if (operator.equals("D")) {
+					if (max.isEmpty() || min.isEmpty()) {continue;}
 
+					if (value == 1) {
+						int maxVal = max.poll();
+						min.remove(maxVal);
+					} else if (value == -1) {
+						int minVal = min.poll();
+						max.remove(minVal);
 					}
 				}
-
 			}
 
-			// 큐가 비었으면 [0, 0] 반환
 			if (max.isEmpty() || min.isEmpty()) {
 				return new int[]{0, 0};
 			}
 
-			// 최대값, 최소값 반환
-			return new int[]{max.peek(), min.peek()};
+			return new int[]{max.poll(), min.poll()};
 		}
 	}
 }

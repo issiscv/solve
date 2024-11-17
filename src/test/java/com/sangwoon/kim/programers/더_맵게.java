@@ -3,7 +3,6 @@ package com.sangwoon.kim.programers;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -24,23 +23,25 @@ public class 더_맵게 {
 
 			Queue<Integer> queue = new PriorityQueue<>();
 
-			for (int i : scoville) {
-				queue.offer(i);
+			for (int i = 0; i < scoville.length; i++) {
+				queue.offer(scoville[i]);
 			}
 
-			//1, 2, 3, 9, 10, 12
+			//가장 맵지 않은 + (2번째로 맵지 않은 * 2)
 			while (!queue.isEmpty() && queue.peek() < k) {
-				int a = queue.poll();//1 3
+				int a = queue.poll();
 				if (queue.isEmpty()) {
 					return -1;
 				}
-				int b = queue.poll();//2 5
-				int mixed = a + (b * 2);//5 13
-				queue.offer(mixed);
+				int b = queue.poll();
+
+				int value = a + (2 * b);
+				queue.offer(value);
 				answer++;
 			}
 
-			if (queue.peek() < k) answer = -1;
+			if (queue.peek() < k)
+				return -1;
 
 			return answer;
 		}
