@@ -23,10 +23,9 @@ public class H_Index {
 			for (int i = 0; i < citations.length; i++) {
 				//0 1 3 5 6
 				int h = citations.length - i;
-				if (citations[i] >= h) {
-					answer = Math.max(answer, h);
+				if (citations[i] <= h) {
+					answer = Math.max(answer, citations[i]);
 				}
-
 			}
 
 			return answer;

@@ -26,12 +26,8 @@ public class 가장_큰_수 {
 			}
 
 			//6 10 2
-			//6 10 610 106
-			//6 2 62 26
-			//10 2 102 210
-			Arrays.sort(arr, (o1, o2) -> {
-				return (o2 + o1).compareTo(o1 + o2);
-			});
+			//o1: 610, o2: 106
+			Arrays.sort(arr, (o1, o2) -> (o2 + o1).compareTo(o1 + o2));
 
 			if (arr[0].equals("0")) return "0";
 
