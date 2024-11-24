@@ -20,41 +20,37 @@ public class 소수_찾기 {
 
 	class Solution {
 
-		private boolean[] visited;
-		private int length;
-		private Set<Integer> set = new HashSet<>();
+		boolean[] visited;
+		int length;
+		Set<Integer> set = new HashSet<>();
 
 		public int solution(String numbers) {
-			int answer = 0;
 			length = numbers.length();
 			visited = new boolean[length];
+			int answer = 0;
 
 			for (int i = 0; i < length; i++) {
 				DFS(i, "", numbers);
 			}
 
 			for (int value : set) {
-				if (isPrime(value)) {
-					answer++;
-				}
+				if (isPrime(value)) answer++;
 			}
 
 			return answer;
 		}
 
 		private boolean isPrime(int value) {
-			if (value <= 1) {
-				return false;
-			}
+			if (value <= 1) return false;
 
-			boolean isPrime = true;
 
 			for (int i = 2; i < value; i++) {
-				if (value % i == 0)
+				if (value % i == 0) {
 					return false;
+				}
 			}
 
-			return isPrime;
+			return true;
 		}
 
 		private void DFS(int v, String ch, String numbers) {
@@ -69,7 +65,6 @@ public class 소수_찾기 {
 					}
 				}
 			}
-
 		}
 
 	}

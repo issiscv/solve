@@ -15,32 +15,26 @@ public class 피로도 {
 
 	class Solution {
 
-		int answer = Integer.MIN_VALUE;
 		boolean[] visited;
-		int length;
+		int answer = Integer.MIN_VALUE;
 
 		public int solution(int k, int[][] dungeons) {
-			length = dungeons.length;
-			visited = new boolean[length];
-
+			visited = new boolean[dungeons.length];
 			DFS(0, k, dungeons);
-
 			return answer;
 		}
 
 		private void DFS(int v, int ch, int[][] dungeons) {
 			answer = Math.max(answer, v);
 
-			for (int i = 0; i < length; i++) {
-				if (!visited[i]) {
-					int required = dungeons[i][0];
-					int cost = dungeons[i][1];
-					if (ch >= required) {
-						visited[i] = true;
-						DFS(v+1, ch - cost, dungeons);
-						visited[i] = false;
-					}
+			for (int i = 0; i < dungeons.length; i++) {
+				int required = dungeons[i][0];
+				int cost = dungeons[i][1];
 
+				if (!visited[i] && ch - required >= 0) {
+					visited[i] = true;
+					DFS(v + 1, ch - cost, dungeons);
+					visited[i] = false;
 				}
 
 			}
