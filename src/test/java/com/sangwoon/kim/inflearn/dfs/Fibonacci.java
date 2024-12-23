@@ -1,4 +1,4 @@
-package com.sangwoon.kim.inflearn;
+package com.sangwoon.kim.inflearn.dfs;
 
 public class Fibonacci {
 

@@ -2,6 +2,7 @@ package com.sangwoon.kim.inflearn.dfs;
 
 import java.util.Scanner;
 
+//바둑이 승차
 public class DogBoarding {
 
 	int answer = Integer.MIN_VALUE;
