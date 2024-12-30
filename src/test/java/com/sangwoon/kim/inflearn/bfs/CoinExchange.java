@@ -8,38 +8,36 @@ import java.util.Scanner;
 public class CoinExchange {
 
 	int N;
+	int M;
 	int[] arr;
 
 	public int solution(int N, int M, int[] arr) {
 		this.N = N;
+		this.M = M;
 		this.arr = arr;
-
-		return BFS(M);
+		int bfs = BFS();
+		return bfs;
 	}
 
-	private int BFS(int M) {
+	private int BFS() {
 		Queue<Integer> queue = new LinkedList<>();
 		queue.offer(M);
 		int count = 0;
 		while (!queue.isEmpty()) {
 			int size = queue.size();
-
 			for (int i = 0; i < size; i++) {
 				int poll = queue.poll();
 				for (int j = 0; j < N; j++) {
 					int tmp = poll - arr[j];
-
-					if (tmp == 0) return count + 1;
-
-					if (tmp >= 0) {
-						queue.offer(tmp);
+					if (tmp == 0) {
+						return ++count;
 					}
+					if (tmp > 0) queue.offer(tmp);
 				}
 			}
 			count++;
 		}
-
-		return count;
+		return -1;
 	}
 
 	public static void main(String[] args) {
